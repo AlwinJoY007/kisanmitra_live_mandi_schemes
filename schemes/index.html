@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kisan Mitra - Government Schemes</title>
+    
+    <!-- Google Fonts - Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <h1> Kisan Mitra</h1>
+            </div>
+            <div class="nav-links">
+                <a href="#schemes" class="nav-link active">Schemes</a>
+                <a href="../index.html" class="nav-link">Mandi Prices</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h2 class="hero-title">Government Schemes for Farmers</h2>
+                <p class="hero-subtitle">Discover and apply for various government schemes designed to support and empower farmers across India</p>
+            </div>
+        </section>
+
+        <!-- Search Section -->
+        <section class="search-section">
+            <div class="container">
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Search for schemes..." class="search-input">
+                    <button class="search-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 21L16.514 16.506L21 21ZM19 10.5C19 15.194 15.194 19 10.5 19C5.806 19 2 15.194 2 10.5C2 5.806 5.806 2 10.5 2C15.194 2 19 5.806 19 10.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Schemes Grid -->
+        <section class="schemes-section">
+            <div class="container">
+                <div class="schemes-grid" id="schemesGrid">
+                    <!-- PM-Kisan Samman Nidhi -->
+                    <div class="scheme-card" data-scheme="pm-kisan">
+                        <div class="card-header">
+                            <div class="scheme-icon">💰</div>
+                            <h3 class="scheme-title">PM-Kisan Samman Nidhi</h3>
+                        </div>
+                        <div class="card-body">
+                            <p class="scheme-description">
+                                Direct income support of ₹6,000 per year to small and marginal farmer families, paid in three equal installments.
+                            </p>
+                            <div class="scheme-benefits">
+                                <span class="benefit-tag">Financial Support</span>
+                                <span class="benefit-tag">Direct Transfer</span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="https://pmkisan.gov.in/" target="_blank" class="learn-more-btn">
+                                Learn More
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Kisan Credit Card -->
+                    <div class="scheme-card" data-scheme="kcc">
+                        <div class="card-header">
+                            <div class="scheme-icon">💳</div>
+                            <h3 class="scheme-title">Kisan Credit Card (KCC)</h3>
+                        </div>
+                        <div class="card-body">
+                            <p class="scheme-description">
+                                Flexible credit facility for farmers with simplified procedures and lower interest rates for agricultural needs.
+                            </p>
+                            <div class="scheme-benefits">
+                                <span class="benefit-tag">Credit Facility</span>
+                                <span class="benefit-tag">Low Interest</span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="https://www.rbi.org.in/scripts/BS_ViewMasCirculardetails.aspx?id=11360" target="_blank" class="learn-more-btn">
+                                Learn More
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- PM Fasal Bima Yojana -->
+                    <div class="scheme-card" data-scheme="pmfb">
+                        <div class="card-header">
+                            <div class="scheme-icon">🛡️</div>
+                            <h3 class="scheme-title">PM Fasal Bima Yojana</h3>
+                        </div>
+                        <div class="card-body">
+                            <p class="scheme-description">
+                                Comprehensive crop insurance scheme protecting farmers against crop failure due to natural calamities.
+                            </p>
+                            <div class="scheme-benefits">
+                                <span class="benefit-tag">Crop Insurance</span>
+                                <span class="benefit-tag">Risk Protection</span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="https://pmfby.gov.in/" target="_blank" class="learn-more-btn">
+                                Learn More
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Soil Health Card Scheme -->
+                    <div class="scheme-card" data-scheme="soil-health">
+                        <div class="card-header">
+                            <div class="scheme-icon">🌱</div>
+                            <h3 class="scheme-title">Soil Health Card Scheme</h3>
+                        </div>
+                        <div class="card-body">
+                            <p class="scheme-description">
+                                Free soil testing and health cards for farmers to optimize fertilizer use and improve soil quality.
+                            </p>
+                            <div class="scheme-benefits">
+                                <span class="benefit-tag">Soil Testing</span>
+                                <span class="benefit-tag">Fertilizer Optimization</span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="https://soilhealth.dac.gov.in/" target="_blank" class="learn-more-btn">
+                                Learn More
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- e-NAM -->
+                    <div class="scheme-card" data-scheme="e-nam">
+                        <div class="card-header">
+                            <div class="scheme-icon">🌐</div>
+                            <h3 class="scheme-title">e-NAM (National Agriculture Market)</h3>
+                        </div>
+                        <div class="card-body">
+                            <p class="scheme-description">
+                                Online trading platform connecting agricultural markets across India for better price discovery.
+                            </p>
+                            <div class="scheme-benefits">
+                                <span class="benefit-tag">Online Trading</span>
+                                <span class="benefit-tag">Better Prices</span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="https://www.enam.gov.in/" target="_blank" class="learn-more-btn">
+                                Learn More
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- PM Krishi Sinchayee Yojana -->
+                    <div class="scheme-card" data-scheme="pmksy">
+                        <div class="card-header">
+                            <div class="scheme-icon">💧</div>
+                            <h3 class="scheme-title">PM Krishi Sinchayee Yojana</h3>
+                        </div>
+                        <div class="card-body">
+                            <p class="scheme-description">
+                                Comprehensive irrigation scheme to provide end-to-end solutions for water management in agriculture.
+                            </p>
+                            <div class="scheme-benefits">
+                                <span class="benefit-tag">Irrigation</span>
+                                <span class="benefit-tag">Water Management</span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="https://pmksy.gov.in/" target="_blank" class="learn-more-btn">
+                                Learn More
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- No Results Message -->
+                <div class="no-results" id="noResults" style="display: none;">
+                    <div class="no-results-icon">🔍</div>
+                    <h3>No schemes found</h3>
+                    <p>Try searching with different keywords or browse all schemes.</p>
+                    <button class="clear-search-btn" onclick="clearSearch()">Show All Schemes</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <p>&copy; 2024 Kisan Mitra. Empowering farmers with technology and government support.</p>
+            </div>
+        </footer>
+    </main>
+
+    <!-- External JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

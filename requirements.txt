@@ -1,0 +1,18 @@
+# Kisan Mitra - Mandi Prices Backend Dependencies
+# Install with: pip install -r requirements.txt
+
+# Core Flask framework
+Flask==2.3.3
+Flask-CORS==4.0.0
+
+# HTTP requests for external APIs
+requests==2.31.0
+
+# Additional utilities (optional)
+python-dotenv==1.0.0
+gunicorn==21.2.0
+
+# Development dependencies (optional)
+# Uncomment if needed for development
+# pytest==7.4.2
+# pytest-flask==1.2.0
