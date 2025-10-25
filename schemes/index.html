@@ -19,8 +19,10 @@
                 <h1> Kisan Mitra</h1>
             </div>
             <div class="nav-links">
-                <a href="#schemes" class="nav-link active">Schemes</a>
-                <a href="../index.html" class="nav-link">Mandi Prices</a>
+                <a href="#schemes" class="nav-link active" data-i18n="nav.schemes">Schemes</a>
+                <a href="../index.html" class="nav-link" data-i18n="nav.mandi">Mandi Prices</a>
+                <a href="../market-news/index.html" class="nav-link" data-i18n="nav.news">Market News</a>
+                <div id="google_translate_element_schemes" style="margin-left:12px;"></div>
             </div>
         </div>
     </nav>
@@ -30,8 +32,8 @@
         <!-- Hero Section -->
         <section class="hero">
             <div class="container">
-                <h2 class="hero-title">Government Schemes for Farmers</h2>
-                <p class="hero-subtitle">Discover and apply for various government schemes designed to support and empower farmers across India</p>
+                <h2 class="hero-title" data-i18n="schemes.title">Government Schemes for Farmers</h2>
+                <p class="hero-subtitle" data-i18n="schemes.subtitle">Discover and apply for various government schemes designed to support and empower farmers across India</p>
             </div>
         </section>
 
@@ -39,7 +41,7 @@
         <section class="search-section">
             <div class="container">
                 <div class="search-container">
-                    <input type="text" id="searchInput" placeholder="Search for schemes..." class="search-input">
+                    <input type="text" id="searchInput" placeholder="Search for schemes..." class="search-input" data-i18n-placeholder="schemes.searchPlaceholder">
                     <button class="search-btn">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M21 21L16.514 16.506L21 21ZM19 10.5C19 15.194 15.194 19 10.5 19C5.806 19 2 15.194 2 10.5C2 5.806 5.806 2 10.5 2C15.194 2 19 5.806 19 10.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -82,7 +84,7 @@
                     <div class="scheme-card" data-scheme="kcc">
                         <div class="card-header">
                             <div class="scheme-icon">💳</div>
-                            <h3 class="scheme-title">Kisan Credit Card (KCC)</h3>
+                            <h3 class="scheme-title">Kisan Credit Card (KCC) Scheme</h3>
                         </div>
                         <div class="card-body">
                             <p class="scheme-description">
@@ -94,7 +96,7 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <a href="https://www.rbi.org.in/scripts/BS_ViewMasCirculardetails.aspx?id=11360" target="_blank" class="learn-more-btn">
+                            <a href="https://www.myscheme.gov.in/schemes/kcc" target="_blank" class="learn-more-btn">
                                 Learn More
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -107,7 +109,7 @@
                     <div class="scheme-card" data-scheme="pmfb">
                         <div class="card-header">
                             <div class="scheme-icon">🛡️</div>
-                            <h3 class="scheme-title">PM Fasal Bima Yojana</h3>
+                            <h3 class="scheme-title">Pradhan Mantri Fasal Bima Yojana</h3>
                         </div>
                         <div class="card-body">
                             <p class="scheme-description">
@@ -157,19 +159,19 @@
                     <div class="scheme-card" data-scheme="e-nam">
                         <div class="card-header">
                             <div class="scheme-icon">🌐</div>
-                            <h3 class="scheme-title">e-NAM (National Agriculture Market)</h3>
+                            <h3 class="scheme-title">Pradhan Mantri Kisan Maan-Dhan Yojana</h3>
                         </div>
                         <div class="card-body">
                             <p class="scheme-description">
-                                Online trading platform connecting agricultural markets across India for better price discovery.
+                                A pension scheme for small and marginal farmers that provides a monthly pension of ₹3,000 after the age of 60.
                             </p>
                             <div class="scheme-benefits">
-                                <span class="benefit-tag">Online Trading</span>
-                                <span class="benefit-tag">Better Prices</span>
+                                <span class="benefit-tag">Financial security in old age</span>
+                                <span class="benefit-tag">Government contribution</span>
                             </div>
                         </div>
                         <div class="card-footer">
-                            <a href="https://www.enam.gov.in/" target="_blank" class="learn-more-btn">
+                            <a href="https://pmksy.gov.in/" target="_blank" class="learn-more-btn">
                                 Learn More
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -207,9 +209,9 @@
                 <!-- No Results Message -->
                 <div class="no-results" id="noResults" style="display: none;">
                     <div class="no-results-icon">🔍</div>
-                    <h3>No schemes found</h3>
-                    <p>Try searching with different keywords or browse all schemes.</p>
-                    <button class="clear-search-btn" onclick="clearSearch()">Show All Schemes</button>
+                    <h3 data-i18n="schemes.noResultsTitle">No schemes found</h3>
+                    <p data-i18n="schemes.noResultsDesc">Try searching with different keywords or browse all schemes.</p>
+                    <button class="clear-search-btn" onclick="clearSearch()" data-i18n="schemes.showAll">Show All Schemes</button>
                 </div>
             </div>
         </section>
@@ -217,12 +219,76 @@
         <!-- Footer -->
         <footer class="footer">
             <div class="container">
-                <p>&copy; 2024 Kisan Mitra. Empowering farmers with technology and government support.</p>
+                <p data-i18n="footer.copyright"> 2025 Kisan Mitra. Empowering farmers with technology and government support.</p>
             </div>
         </footer>
     </main>
 
     <!-- External JavaScript -->
     <script src="script.js"></script>
+    <script>
+    (function(){
+        const translations = {
+            en: {
+                'nav.schemes': 'Schemes',
+                'nav.mandi': 'Mandi Prices',
+                'schemes.title': 'Government Schemes for Farmers',
+                'schemes.subtitle': 'Discover and apply for various government schemes designed to support and empower farmers across India',
+                'schemes.searchPlaceholder': 'Search for schemes...',
+                'schemes.noResultsTitle': 'No schemes found',
+                'schemes.noResultsDesc': 'Try searching with different keywords or browse all schemes.',
+                'schemes.showAll': 'Show All Schemes',
+                'footer.copyright': ' 2025 Kisan Mitra. Empowering farmers with technology and government support.'
+            },
+            hi: {
+                'nav.schemes': 'योजनाएँ',
+                'nav.mandi': 'मंडी भाव',
+                'schemes.title': 'किसानों के लिए सरकारी योजनाएँ',
+                'schemes.subtitle': 'विभिन्न सरकारी योजनाएँ जानें और आवेदन करें जो किसानों को सहयोग और सशक्त बनाने के लिए बनाई गई हैं',
+                'schemes.searchPlaceholder': 'योजनाएँ खोजें...',
+                'schemes.noResultsTitle': 'कोई योजना नहीं मिली',
+                'schemes.noResultsDesc': 'कृपया अलग कीवर्ड्स से खोजें या सभी योजनाएँ देखें।',
+                'schemes.showAll': 'सभी योजनाएँ दिखाएँ',
+                'footer.copyright': ' 2025 किसान मित्र। तकनीक और सरकारी सहयोग से किसानों को सशक्त बनाना।'
+            }
+        };
+
+        function applyTranslations(lang) {
+            const dict = translations[lang] || translations.en;
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (dict[key]) el.textContent = dict[key];
+            });
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                if (dict[key]) el.setAttribute('placeholder', dict[key]);
+            });
+        }
+
+        const select = document.getElementById('langSelectSchemes');
+        const saved = localStorage.getItem('km_lang') || 'en';
+        if (select) {
+            select.value = saved;
+            applyTranslations(saved);
+            select.addEventListener('change', () => {
+                const val = select.value;
+                localStorage.setItem('km_lang', val);
+                applyTranslations(val);
+            });
+        } else {
+            applyTranslations(saved);
+        }
+    })();
+    </script>
+    <script>
+    function googleTranslateElementInitSchemes() {
+        new google.translate.TranslateElement({
+            pageLanguage: 'en',
+            includedLanguages: 'hi,bn,ta,te,kn,ml,mr,pa,gu,or,as,ne,ur,sd,si',
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+        }, 'google_translate_element_schemes');
+    }
+    </script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInitSchemes"></script>
 </body>
 </html>

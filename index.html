@@ -12,56 +12,68 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <h1>Kisan Mitra</h1>
+            </div>
+            <div class="nav-links">
+                <a href="#mandi" class="nav-link active" data-i18n="nav.mandi">Mandi Prices</a>
+                <a href="schemes/index.html" class="nav-link" data-i18n="nav.schemes">Government Schemes</a>
+                <a href="market-news/index.html" class="nav-link" data-i18n="nav.news">Market News</a>
+                <div id="google_translate_element" style="margin-left:12px;"></div>
+            </div>
+        </div>
+    </nav>
+
     <div class="container">
         <!-- Header Section -->
         <header class="header">
             <h1>Kisan Mitra</h1>
-            <p>Live Mandi Prices for Informed Selling Decisions</p>
-            <nav class="header-nav">
-                <a href="schemes/index.html" class="nav-link">Government Schemes</a>
-            </nav>
+            <p data-i18n="header.subtitle">Live Mandi Prices for Informed Selling Decisions</p>
         </header>
 
         <!-- Main Content -->
         <main class="main-card">
             <!-- Section Title -->
             <div class="section-title">
-                <h2>Live Mandi Prices</h2>
-                <p>Real-time crop prices from nearby mandis to help you make informed selling decisions</p>
+                <h2 data-i18n="title.mandi">Live Mandi Prices</h2>
+                <p data-i18n="subtitle.mandi">Real-time crop prices from nearby mandis to help you make informed selling decisions</p>
                 <div class="info-banner">
                     <small>
-                        📍 Showing prices from major agricultural mandis across India | Updated every 5 minutes
+                        <span data-i18n="banner.info">📍 Showing prices from major agricultural mandis across India | Updated every 5 minutes</span>
                     </small>
                 </div>
             </div>
 
             <!-- Filters -->
             <div class="filters-section">
-                <h3>Filter Prices</h3>
+                <h3 data-i18n="filters.title">Filter Prices</h3>
                 <div class="filters">
                     <div class="filter-group">
-                        <label for="stateFilter">State:</label>
+                        <label for="stateFilter" data-i18n="filters.state">State:</label>
                         <select id="stateFilter" onchange="applyFilters()">
-                            <option value="">All States</option>
+                            <option id="optAllStates" value="" data-i18n="filters.allStates">All States</option>
                         </select>
                     </div>
                     
                     <div class="filter-group">
-                        <label for="districtFilter">District:</label>
+                        <label for="districtFilter" data-i18n="filters.district">District:</label>
                         <select id="districtFilter" onchange="applyFilters()">
-                            <option value="">All Districts</option>
+                            <option id="optAllDistricts" value="" data-i18n="filters.allDistricts">All Districts</option>
                         </select>
                     </div>
                     
                     <div class="filter-group">
-                        <label for="commodityFilter">Commodity:</label>
+                        <label for="commodityFilter" data-i18n="filters.commodity">Commodity:</label>
                         <select id="commodityFilter" onchange="applyFilters()">
-                            <option value="">All Commodities</option>
+                            <option id="optAllCommodities" value="" data-i18n="filters.allCommodities">All Commodities</option>
                         </select>
                     </div>
                     
                     <div class="filter-group">
-                        <button class="clear-filters-btn" onclick="clearFilters()">
+                        <button class="clear-filters-btn" onclick="clearFilters()" data-i18n="filters.clear">
                             Clear Filters
                         </button>
                     </div>
@@ -70,7 +82,7 @@
 
             <!-- Controls -->
             <div class="controls">
-                <button class="refresh-btn" id="refreshBtn" onclick="fetchMarketPrices()">
+                <button class="refresh-btn" id="refreshBtn" onclick="fetchMarketPrices(true)">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M1 4V10H7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M23 20V14H17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -89,10 +101,10 @@
                 <table class="price-table" id="priceTable">
                     <thead>
                         <tr>
-                            <th>Crop/Commodity</th>
-                            <th>State</th>
-                            <th>District</th>
-                            <th>Mandi Price (₹/Quintal/kg)</th>
+                            <th data-i18n="table.commodity">Crop/Commodity</th>
+                            <th data-i18n="table.state">State</th>
+                            <th data-i18n="table.district">District</th>
+                            <th data-i18n="table.price">Mandi Price (₹/Quintal/kg)</th>
                         </tr>
                     </thead>
                     <tbody id="priceTableBody">
@@ -110,5 +122,67 @@
 
     <!-- External JavaScript -->
     <script src="script.js"></script>
+    <script>
+    (function(){
+        const translations = {
+            en: {
+                'header.subtitle': 'Live Mandi Prices for Informed Selling Decisions',
+                'nav.schemes': 'Government Schemes',
+                'title.mandi': 'Live Mandi Prices',
+                'subtitle.mandi': 'Real-time crop prices from nearby mandis to help you make informed selling decisions',
+                'banner.info': '📍 Showing prices from major agricultural mandis across India | Updated every 5 minutes',
+                'filters.title': 'Filter Prices',
+                'filters.state': 'State:',
+                'filters.district': 'District:',
+                'filters.commodity': 'Commodity:',
+                'filters.allStates': 'All States',
+                'filters.allDistricts': 'All Districts',
+                'filters.allCommodities': 'All Commodities',
+                'filters.clear': 'Clear Filters',
+                'table.commodity': 'Crop/Commodity',
+                'table.state': 'State',
+                'table.district': 'District',
+                'table.price': 'Mandi Price (₹/Quintal/kg)'
+            },
+            hi:
+        };
+
+        function applyTranslations(lang) {
+            const dict = translations[lang] || translations.en;
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (dict[key]) el.textContent = dict[key];
+            });
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                if (dict[key]) el.setAttribute('placeholder', dict[key]);
+            });
+        }
+
+        const langSelect = document.getElementById('langSelect');
+        if (langSelect) {
+            const saved = localStorage.getItem('km_lang') || 'en';
+            langSelect.value = saved;
+            applyTranslations(saved);
+            langSelect.addEventListener('change', () => {
+                const val = langSelect.value;
+                localStorage.setItem('km_lang', val);
+                applyTranslations(val);
+            });
+        } else {
+            applyTranslations('en');
+        }
+    })();
+    </script>
+    <script>
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+            pageLanguage: 'en',
+            includedLanguages: 'hi,bn,ta,te,kn,ml,mr,pa,gu,or,as,ne,ur,sd,si',
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+        }, 'google_translate_element');
+    }
+    </script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
