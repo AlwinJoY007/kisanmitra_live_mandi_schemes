@@ -6,13 +6,17 @@ A responsive web application that displays live mandi prices for farmers to make
 
 ```
 Kisan-Mitra/
-├── index.html          # Main HTML file
-├── styles.css          # CSS styling
-├── script.js           # Frontend JavaScript
-├── app.py              # Python Flask backend API
-├── requirements.txt    # Python dependencies
-├── README.md           # This file
-└── market.html         # Original combined file (backup)
+├── index.html           # Main HTML file
+├── styles.css           # CSS styling
+├── script.js            # Frontend JavaScript
+├── app.py               # Python Flask backend API
+├── requirements.txt     # Python dependencies
+├── README.md            # Project documentation
+├── LICENSE              # MIT License
+├── .env                 # Environment variables (not committed)
+├── market-news/         # Frontend news module
+├── schemes/             # Government schemes module
+├── apires.py            # Utility for API responses
 ```
 
 ## 🚀 Quick Start
@@ -24,6 +28,14 @@ Kisan-Mitra/
 
 ### Option 2: Full Stack (Frontend + Backend)
 
+#### Environment Variables (.env)
+Create a `.env` file in the project root with your API keys:
+
+```
+DATA_GOV_API_KEY=your_data_gov_in_api_key
+NEWS_API_KEY=your_newsapi_key
+```
+
 #### Backend Setup:
 ```bash
 # Install Python dependencies
@@ -33,7 +45,7 @@ pip install -r requirements.txt
 python app.py
 ```
 
-The backend will start on `http://localhost:5000` or open index.html (most probably working)
+The backend starts at `http://localhost:5000`. The frontend will fetch live data when valid API keys are present; otherwise, it falls back to sample data.
 
 #### Frontend Setup:
 1. Open `index.html` in your web browser
@@ -65,7 +77,32 @@ The backend will start on `http://localhost:5000` or open index.html (most proba
 | `/api/health` | GET | Health check |
 | `/api/mandi-prices` | GET | Get all mandi prices |
 | `/api/mandi-prices/<crop>` | GET | Get specific crop price |
+| `/api/news` | GET | Get agricultural news |
 | `/api/stats` | GET | API statistics |
+
+## 📰 Market News Module
+
+- **Path**: `market-news/index.html`
+- **Purpose**: Browse agricultural news by category, search, and fallback to sample data when APIs are unavailable.
+- **Backend**: Fetches from backend `GET /api/news`.
+- **Requirements**:
+  - Backend running: `python app.py`
+  - `.env` with `NEWS_API_KEY` set; otherwise, the page will use fallback sample news.
+- **Configuration**:
+  - Update `BACKEND_API_URL` in `market-news/script.js` if your backend is not at `http://localhost:5000/api`.
+- **Run**:
+  - Open `market-news/index.html` in your browser.
+
+## 🏛️ Schemes Module
+
+- **Path**: `schemes/index.html`
+- **Purpose**: Discover key government schemes with instant search and highlighting.
+- **Backend**: Not required; fully client-side.
+- **Features**:
+  - Keyword search across scheme name, description, and tags.
+  - Result count indicator and highlight of matching terms.
+- **Run**:
+  - Open `schemes/index.html` in your browser.
 
 ## 🎨 Customization
 
@@ -149,3 +186,7 @@ The application is designed for hackathon demonstrations and can be easily custo
 ---
 
 **Ready to help farmers make informed decisions! 🌾📊**
+
+## 📝 License
+
+This project is licensed under the MIT License. See the `LICENSE` file for details.
