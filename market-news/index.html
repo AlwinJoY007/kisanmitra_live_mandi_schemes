@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kisan Mitra - Market News</title>
+    
+    <!-- Google Fonts - Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <h1>Kisan Mitra</h1>
+            </div>
+            <div class="nav-links">
+                <a href="../index.html" class="nav-link">Mandi Prices</a>
+                <a href="../schemes/index.html" class="nav-link">Government Schemes</a>
+                <a href="#news" class="nav-link active">Market News</a>
+                <div id="google_translate_element_news" style="margin-left:12px;"></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h2 class="hero-title">Agricultural Market News & Updates</h2>
+                <p class="hero-subtitle">Stay informed with the latest agricultural news, policy updates, and market insights to make better farming decisions</p>
+            </div>
+        </section>
+
+        <!-- Search and Filter Section -->
+        <section class="search-section">
+            <div class="container">
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Search news articles..." class="search-input">
+                    <button class="search-btn" onclick="searchNews()">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 21L16.514 16.506L21 21ZM19 10.5C19 15.194 15.194 19 10.5 19C5.806 19 2 15.194 2 10.5C2 5.806 5.806 2 10.5 2C15.194 2 19 5.806 19 10.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+                
+                <div class="filter-tabs">
+                    <button class="filter-tab active" data-category="all" onclick="filterNews('all')">All News</button>
+                    <button class="filter-tab" data-category="policy" onclick="filterNews('policy')">Policy Updates</button>
+                    <button class="filter-tab" data-category="market" onclick="filterNews('market')">Market Trends</button>
+                    <button class="filter-tab" data-category="weather" onclick="filterNews('weather')">Weather</button>
+                    <button class="filter-tab" data-category="technology" onclick="filterNews('technology')">Technology</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- News Grid -->
+        <section class="news-section">
+            <div class="container">
+                <div class="news-grid" id="newsGrid">
+                    <!-- News articles will be populated by JavaScript -->
+                </div>
+
+                <!-- No Results Message -->
+                <div class="no-results" id="noResults" style="display: none;">
+                    <div class="no-results-icon">📰</div>
+                    <h3>No news articles found</h3>
+                    <p>Try searching with different keywords or browse all news.</p>
+                    <button class="clear-search-btn" onclick="clearSearch()">Show All News</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <p>© 2025 Kisan Mitra. Empowering farmers with technology and government support.</p>
+            </div>
+        </footer>
+    </main>
+
+    <!-- External JavaScript -->
+    <script src="script.js"></script>
+    <script>
+    function googleTranslateElementInitNews() {
+        new google.translate.TranslateElement({
+            pageLanguage: 'en',
+            includedLanguages: 'hi,bn,ta,te,kn,ml,mr,pa,gu,or,as,ne,ur,sd,si',
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+        }, 'google_translate_element_news');
+    }
+    </script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInitNews"></script>
+</body>
+</html>

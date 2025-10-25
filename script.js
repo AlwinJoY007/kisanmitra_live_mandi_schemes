@@ -19,6 +19,55 @@ const commodityFilter = document.getElementById('commodityFilter');
 // Global variables
 let allPriceData = [];
 let filteredData = [];
+let isRefreshing = false; // guard to avoid overwriting fresh data
+let latestRequestId = 0; // incrementing token to ignore stale responses
+
+// Static list of Indian States and Union Territories
+const INDIAN_STATES_AND_UTS = [
+    // States
+    'Andhra Pradesh',
+    'Arunachal Pradesh',
+    'Assam',
+    'Bihar',
+    'Chhattisgarh',
+    'Goa',
+    'Gujarat',
+    'Haryana',
+    'Himachal Pradesh',
+    'Jharkhand',
+    'Karnataka',
+    'Kerala',
+    'Madhya Pradesh',
+    'Maharashtra',
+    'Manipur',
+    'Meghalaya',
+    'Mizoram',
+    'Nagaland',
+    'Odisha',
+    'Punjab',
+    'Rajasthan',
+    'Sikkim',
+    'Tamil Nadu',
+    'Telangana',
+    'Tripura',
+    'Uttar Pradesh',
+    'Uttarakhand',
+    'West Bengal',
+    // Union Territories
+    'Andaman and Nicobar Islands',
+    'Chandigarh',
+    'Dadra and Nagar Haveli and Daman and Diu',
+    'Delhi',
+    'Jammu and Kashmir',
+    'Ladakh',
+    'Lakshadweep',
+    'Puducherry'
+].sort();
+
+function populateStateFilterWithAllStates() {
+    if (!stateFilter) return;
+    populateSelect(stateFilter, INDIAN_STATES_AND_UTS);
+}
 
 /**
  * Show status message
@@ -109,8 +158,10 @@ function renderPriceTable(prices) {
 /**
  * Fetch market prices from backend API
  */
-async function fetchMarketPrices() {
+async function fetchMarketPrices(force = false) {
     try {
+        isRefreshing = true;
+        const requestId = ++latestRequestId;
         setLoadingState(true);
         showStatusMessage('Fetching live mandi prices...', 'loading');
         
@@ -119,6 +170,8 @@ async function fetchMarketPrices() {
         if (stateFilter.value) params.append('state', stateFilter.value);
         if (districtFilter.value) params.append('district', districtFilter.value);
         if (commodityFilter.value) params.append('commodity', commodityFilter.value);
+        if (force) params.append('force', 'true');
+        params.append('_', Date.now().toString());
         
         // Make API call to backend
         const response = await fetch(`${BACKEND_API_URL}/mandi-prices?${params.toString()}`);
@@ -135,6 +188,11 @@ async function fetchMarketPrices() {
         
         if (!data.prices || data.prices.length === 0) {
             throw new Error('No price data available');
+        }
+        
+        // Ignore stale responses
+        if (requestId !== latestRequestId) {
+            return;
         }
         
         // Store all data globally
@@ -170,9 +228,9 @@ async function fetchMarketPrices() {
         // Fallback: Show sample mandi data with note (expanded dataset)
         const fallbackData = [
             // Punjab
-            { name: 'Wheat', price: 2150.00, state: 'Punjab', district: 'Amritsar', market: 'APMC Amritsar' },
+            { name: 'Wheat', price: 22150.00, state: 'Punjabi', district: 'Amritsar', market: 'APMC Amritsar' },
             { name: 'Rice', price: 1950.00, state: 'Punjab', district: 'Ludhiana', market: 'APMC Ludhiana' },
-            { name: 'Maize', price: 1750.00, state: 'Punjab', district: 'Jalandhar', market: 'APMC Jalandhar' },
+            { name: 'Maize', price: 2750.00, state: 'Punjab', district: 'Jalandhar', market: 'APMC Jalandhar' },
             
             // Haryana
             { name: 'Rice', price: 1850.00, state: 'Haryana', district: 'Karnal', market: 'APMC Karnal' },
@@ -222,7 +280,8 @@ async function fetchMarketPrices() {
             { name: 'Chilli', price: 180.00, state: 'Andhra Pradesh', district: 'Kurnool', market: 'APMC Kurnool' }
         ];
         
-        // Store fallback data globally
+        // Store fallback data globally (only if not superseded)
+        const requestId = ++latestRequestId;
         allPriceData = fallbackData;
         filteredData = [...allPriceData];
         
@@ -245,6 +304,7 @@ async function fetchMarketPrices() {
         
     } finally {
         setLoadingState(false);
+        isRefreshing = false;
     }
 }
 
@@ -271,6 +331,8 @@ async function checkBackendHealth() {
  * Initialize the page
  */
 async function initializePage() {
+    // Populate State dropdown with all Indian states/UTs upfront
+    populateStateFilterWithAllStates();
     // Check if backend is available
     const isBackendHealthy = await checkBackendHealth();
     
@@ -308,10 +370,7 @@ document.addEventListener('keydown', (event) => {
 function populateFilters() {
     if (!allPriceData || allPriceData.length === 0) return;
     
-    // Get unique states
-    const states = [...new Set(allPriceData.map(item => item.state).filter(state => state && state.trim()))].sort();
-    populateSelect(stateFilter, states);
-    
+    // Keep state filter as the predefined full list; don't overwrite here
     // Get unique districts
     const districts = [...new Set(allPriceData.map(item => item.district).filter(district => district && district.trim()))].sort();
     populateSelect(districtFilter, districts);
@@ -345,6 +404,7 @@ function populateSelect(selectElement, options) {
  * Apply current filters to data and render table
  */
 async function applyFilters() {
+    const requestId = ++latestRequestId;
     const selectedState = stateFilter.value;
     const selectedDistrict = districtFilter.value;
     const selectedCommodity = commodityFilter.value;
@@ -366,7 +426,7 @@ async function applyFilters() {
             if (data.success && data.prices && data.prices.length > 0) {
                 // Update with fresh filtered data from backend
                 filteredData = data.prices;
-                allPriceData = data.prices; // Update global data with filtered results
+                // Do NOT overwrite global dataset with filtered subset
                 
                 // Populate filter options with new data
                 populateFilters();
@@ -376,8 +436,11 @@ async function applyFilters() {
                 districtFilter.value = selectedDistrict;
                 commodityFilter.value = selectedCommodity;
                 
-                renderPriceTable(filteredData);
-                showStatusMessage(`Found ${filteredData.length} records matching your filters`, 'success');
+                // Ignore stale responses
+                if (requestId === latestRequestId) {
+                    renderPriceTable(filteredData);
+                    showStatusMessage(`Found ${filteredData.length} records matching your filters`, 'success');
+                }
                 return;
             }
         }
