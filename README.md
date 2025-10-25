@@ -172,16 +172,6 @@ To integrate this into your main project:
 - Check console logs for API responses
 - Test with sample data first
 
-## 📞 Support
-
-For issues or questions:
-1. Check the browser console for error messages
-2. Verify all files are in the correct locations
-3. Ensure Python dependencies are installed correctly
-
-## 🎯 Demo
-
-The application is designed for hackathon demonstrations and can be easily customized for different agricultural data sources or regions.
 
 ---
 
