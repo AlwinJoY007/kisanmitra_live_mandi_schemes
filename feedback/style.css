@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f0f4f8;  /* Light earthy white tone */
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header {
+    background-color: #4CAF50;  /* Earthy green */
+    color: white;
+    padding: 1.5rem;
+    width: 100%;
+    text-align: center;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+main {
+    padding: 2rem;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.feedback-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);  /* Shadowed card-like layout */
+    width: 90%;
+    max-width: 600px;
+    margin: auto;
+}
+
+.feedback-card label {
+    display: block;
+    margin-top: 1rem;
+    font-weight: 600;
+    color: #4CAF50;  /* Earthy green for labels */
+}
+
+.feedback-card input, .feedback-card select, .feedback-card textarea {
+    width: 100%;
+    padding: 0.75rem;
+    margin-top: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;  /* Rounded input boxes */
+    font-family: 'Poppins', sans-serif;
+    transition: border-color 0.3s;
+}
+
+.feedback-card input:focus, .feedback-card select:focus, .feedback-card textarea:focus {
+    border-color: #4CAF50;  /* Green border on focus */
+    outline: none;
+}
+
+#micButton {
+    margin-top: 0.5rem;
+    padding: 0.75rem;
+    background-color: #4CAF50;  /* Green button */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#micButton:hover {
+    background-color: #45a049;  /* Darker green on hover */
+}
+
+.feedback-card button[type="submit"] {
+    margin-top: 1.5rem;
+    padding: 0.75rem 1.5rem;
+    background-color: #4CAF50;  /* Green submit button */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+}
+
+.feedback-card button[type="submit"]:hover {
+    background-color: #45a049;  /* Hover effect */
+}
+
+#downloadButton {
+    margin-top: 1rem;
+    padding: 0.75rem 1.5rem;
+    background-color: #f44336;  /* Red for admin button */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+
+#downloadButton:hover {
+    background-color: #e53935;
+}
+
+@media (max-width: 600px) {
+    .feedback-card {
+        width: 95%;
+        padding: 1.5rem;
+    }
+    
+    header {
+        padding: 1rem;
+    }
+    
+    main {
+        padding: 1rem;
+    }
+}

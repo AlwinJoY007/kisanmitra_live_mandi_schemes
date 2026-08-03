@@ -11,6 +11,7 @@ from functools import wraps
 import time
 import os
 from dotenv import load_dotenv
+import csv
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -703,6 +704,46 @@ def internal_error(error):
         'message': 'An unexpected error occurred'
     }), 500
 
+# --- Feedback API Integration ---
+FEEDBACK_CSV_FILE = os.path.join(os.path.dirname(__file__), 'feedback_data.csv')
+
+@app.route('/api/feedback/submit', methods=['POST'])
+def submit_feedback():
+    try:
+        data = request.get_json()
+        if not data:
+            return jsonify({"error": "No data received"}), 400
+        
+        name = data.get('name')
+        phone = data.get('phone')
+        state = data.get('state')
+        feedback = data.get('feedback')
+
+        if not all([name, phone, state, feedback]):
+            return jsonify({"error": "Missing fields"}), 400
+
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+        file_exists = os.path.isfile(FEEDBACK_CSV_FILE)
+        with open(FEEDBACK_CSV_FILE, 'a', newline='', encoding='utf-8') as f:
+            writer = csv.writer(f)
+            if not file_exists:
+                writer.writerow(['Name', 'Phone', 'State', 'Feedback', 'Timestamp'])
+            writer.writerow([name, phone, state, feedback, timestamp])
+
+        return jsonify({"success": True}), 200
+    except Exception as e:
+        logger.error(f"Error submitting feedback: {str(e)}")
+        return jsonify({"error": str(e)}), 500
+
+@app.route('/api/feedback/download', methods=['GET'])
+def download_feedback():
+    from flask import send_file
+    if not os.path.exists(FEEDBACK_CSV_FILE):
+        return jsonify({"error": "No feedback data available yet"}), 404
+    return send_file(FEEDBACK_CSV_FILE, as_attachment=True)
+
+
 if __name__ == '__main__':
     logger.info("Starting Kisan Mitra Mandi Prices API Server...")
     logger.info("Available endpoints:")
@@ -711,6 +752,8 @@ if __name__ == '__main__':
     logger.info("  GET /api/mandi-prices/<crop> - Get specific crop price")
     logger.info("  GET /api/news - Get agricultural news")
     logger.info("  GET /api/stats - Get API statistics")
+    logger.info("  POST /api/feedback/submit - Submit feedback")
+    logger.info("  GET /api/feedback/download - Download feedback CSV")
     
     # Run the Flask app
     app.run(
